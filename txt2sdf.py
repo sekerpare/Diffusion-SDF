@@ -81,9 +81,8 @@ if __name__ == "__main__":
     config = OmegaConf.load(opt.config_path)
     model = instantiate_from_config(config.model)
 
-    model.load_state_dict(torch.load(opt.model_path)["state_dict"], strict=False)
-
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    model.load_state_dict(torch.load(opt.model_path, map_location=device)["state_dict"], strict=False)
     model = model.to(device)
 
     dist, elev, azim = 1.7, 20, 20

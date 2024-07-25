@@ -420,7 +420,7 @@ def render_sdf(mesh_renderer, sdf, level=0.02, color=None, render_imsize=256, re
     return rendered_im
 
 
-def rotate_mesh(mesh, axis='Y', angle=10, device='cuda'):
+def rotate_mesh(mesh, axis='Y', angle=10, device='cpu'):
     rot_func = RotateAxisAngle(angle, axis, device=device)
 
     verts = mesh.verts_list()
