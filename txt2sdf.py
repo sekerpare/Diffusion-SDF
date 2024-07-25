@@ -115,7 +115,7 @@ if __name__ == "__main__":
                                                  unconditional_conditioning=uc,
                                                  eta=opt.ddim_eta)
 
-                x_samples_ddim = model.decode_first_stage(samples_ddim)
+                x_samples_ddim, clusters, features, pca_feat = model.decode_first_stage(samples_ddim)
 
     tar_dir = os.path.join(sample_path, f'{prompt.replace(" ", "-")}')
     os.makedirs(tar_dir, exist_ok=True)

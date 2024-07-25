@@ -4,6 +4,7 @@ import math
 import torch
 import torch.nn as nn
 import numpy as np
+from utils.clustering import cluster
 
 
 def nonlinearity(x):
@@ -376,6 +377,8 @@ class Decoder3D(nn.Module):
             return h
 
         h = self.norm_out(h)
+        features = h.clone()
+        clusters, pca_feat = cluster(h.clone())
         h = nonlinearity(h)
         h = self.conv_out(h)
-        return h
+        return h , clusters, features, pca_feat
