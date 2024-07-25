@@ -29,6 +29,7 @@ from pytorch3d.structures import Meshes
 from pytorch3d.structures import Pointclouds
 from pytorch3d.transforms import RotateAxisAngle
 from termcolor import cprint
+from .marching_cubes import marching_cubes
 
 # from open3d.geometry.PointCloud import compute_point_cloud_distance
 
