@@ -218,6 +218,7 @@ def save_mesh_as_gif(mesh_renderer, mesh, rot=True, nrow=3, out_name='1.gif'):
 
         # gather img into batches
         nimgs = len(rot_comb)
+        """
         nrots = len(rot_comb[0])
         H, W, C = rot_comb[0][0].shape
         rot_comb_img = []
@@ -236,7 +237,15 @@ def save_mesh_as_gif(mesh_renderer, mesh, rot=True, nrow=3, out_name='1.gif'):
 
             # combine them according to nrow
             for rot in rot_comb_img:
-                writer.append_data(rot)
+                writer.append_data(rot)"""
+
+        from moviepy.editor import ImageSequenceClip
+        for i in range(nimgs):
+            clip = ImageSequenceClip(rot_comb[i], fps=20)
+            clip.write_videofile(out_name + "_" + str(i) + ".mp4", codec='libx264', fps=20)
+            #subprocess.run(["gifmaker", "-i", out_name + "_" +"*.png","-o",out_name + "_" + str(i) + ".gif" ])
+            #gifimgs[0].save(out_name + "_" + str(i) + ".gif", format="GIF", append_images=gifimgs,save_all=True, duration=100, loop=0)
+
 
 
 def save_mesh_as_pngs(mesh_renderer, mesh, out_dir='1.gif'):
